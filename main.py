@@ -1,8 +1,11 @@
 import modulo = mo
 
 correct_pass = False
+#Si ya ingresaron con la contraseña correcta o no
 usuarios_registrados = [mo.User("Default", "0123")]
+#Todos los usuarios registrados
 usuario_act:mo.User
+#Usuario de la sesion actual
 
 #Mientras no se ponge la contraseña correcta o se cree una cuenta esto se repite
 while correct_pass == False:
@@ -23,7 +26,6 @@ while correct_pass == False:
     #Le resto 1 al largo de la lista para que no se salga de rango
     usuario_act = usuarios_registrados[len(usuarios_registrados)-1]
     print("Registrado correctamente")
-    print(usuario_act)
     correct_pass = True
 
 while True:
