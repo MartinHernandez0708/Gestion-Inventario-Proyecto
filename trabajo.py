@@ -4,7 +4,7 @@
 #Creando una clase de productos en donde se define cada producto
 class Producto:
     def __init__(self, id_producto, nombre, cantidad, precio):
-        self.idproducto = id_producto
+        self.id_producto = id_producto
         self.nombre = nombre
         self.cantidad = cantidad
         self.precio = precio
