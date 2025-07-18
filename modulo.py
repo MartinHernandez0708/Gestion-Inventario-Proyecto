@@ -68,7 +68,7 @@ class SistemaTienda:
         self.gestor_inventario = Gestor_Inventario()
         #2 administradores predefinidos
         self.usuarios.append(usuario("martin", "martin", "vendedor"))
-        self.usuarios.append(usuario("alexander456lt", "alexander456lt", "vendedor"))
+        self.usuarios.append(usuario("Jilson", "Jilson", "vendedor"))
         self.usuario_actual = None
         
     def registrar_clientes(self):
