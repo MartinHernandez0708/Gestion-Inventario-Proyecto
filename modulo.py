@@ -53,3 +53,138 @@ class Gestor_Inventario:
             self.productos[id_producto].precio = nuevo_precio
             print(f"El precio del producto ha sido actualizado a {nuevo_precio}")
             
+class usuario:
+    def __init__(self, nombre, contraseña, tipo):
+        self.nombre = nombre
+        self.contraseña = contraseña
+        self.tipo = tipo # 'admin' o 'usuario'
+        
+    def __str__(self):
+        return f"Usuario: {self.nombre}, Tipo: {self.tipo}"
+
+class SistemaTienda:
+    def __init__(self):
+        self.usuarios = []
+        self.gestor_inventario = Gestor_Inventario()
+        #2 administradores predefinidos
+        self.usuarios.append(usuario("martin", "martin", "vendedor"))
+        self.usuarios.append(usuario("Jilson", "Jilson", "vendedor"))
+        self.usuario_actual = None
+        
+    def registrar_clientes(self):
+        nombre = input("Ingrese su nombre: ")
+        contraseña = input("Ingrese su contraseña: ")
+        self.usuarios.append(usuario(nombre, contraseña, "Cliente"))
+        print(f"Cliente {nombre} registrado exitosamente.")
+        
+    def iniciar_sesion(self):
+        nombre = input("Usuario: ")
+        contraseña = input("Contraseña: ")
+        for usuario in self.usuarios:
+            if usuario.nombre == nombre and usuario.contraseña == contraseña:
+                self.usuario_actual = usuario
+                print(f"Bienvenido {usuario.nombre} ({usuario.tipo})")
+                return True
+        print("Usuario o contraseña incorrectos.")
+        return False
+    def cerrar_sesion(self):
+        print(f"Saliendo de la cuenta de {self.usuario_actual.nombre}")
+        self.usuario_actual = None
+
+    def menu_principal(self):
+        while True:
+            if not self.usuario_actual:
+                print("\n--- Sistema de Tienda ---")
+                print("1. Iniciar sesión")
+                print("2. Registrarse como cliente")
+                print("3. Salir")
+                opcion = input("Seleccione una opción: ")
+                if opcion == "1":
+                    if self.iniciar_sesion():
+                        self.menu_usuario()
+                elif opcion == "2":
+                    self.registrar_cliente()
+                elif opcion == "3":
+                    print("Hasta luego.")
+                    break
+                else:
+                    print("Opción no válida.")
+            else:
+                self.menu_usuario()
+                
+    def menu_usuario(self):
+        usuario = self.usuario_actual
+        while True:
+            print(f"\n--- Menú ({usuario.tipo}) ---")
+            if usuario.tipo == "vendedor":
+                print("1. Agregar producto")
+                print("2. Eliminar producto")
+                print("3. Modificar cantidad de producto")
+                print("4. Modificar precio de producto")
+                print("5. Mostrar productos actuales")
+                print("6. Salir de la cuenta")
+            elif usuario.tipo == "cliente":
+                print("1. Ver productos")
+                print("2. Comprar producto")
+                print("3. Cambiar de cuenta")
+                print("4. Salir")
+
+            opcion = input("Seleccione una opción: ")
+
+            if usuario.tipo == "vendedor":
+                if opcion == "1":
+                    idp = input("ID producto: ")
+                    nombre = input("Nombre: ")
+                    cantidad = int(input("Cantidad: "))
+                    precio = float(input("Precio: "))
+                    producto = Producto(idp, nombre, cantidad, precio)
+                    self.inventario.agregar_producto(producto)
+                elif opcion == "2":
+                    idp = input("ID producto a eliminar: ")
+                    self.inventario.eliminar_producto(idp)
+                elif opcion == "3":
+                    idp = input("ID producto a modificar cantidad: ")
+                    cantidad = int(input("Nueva cantidad: "))
+                    self.inventario.actualizar_cantidad(idp, cantidad)
+                elif opcion == "4":
+                    idp = input("ID producto a modificar precio: ")
+                    precio = float(input("Nuevo precio: "))
+                    self.inventario.actualizar_precio(idp, precio)
+                elif opcion == "5":
+                    self.inventario.mostrar_productos()
+                elif opcion == "6":
+                    self.cerrar_sesion()
+                    break
+                else:
+                    print("Opción no válida.")
+            elif usuario.tipo == "cliente":
+                if opcion == "1":
+                    self.inventario.mostrar_productos()
+                elif opcion == "2":
+                    self.comprar_producto()
+                elif opcion == "3":
+                    self.cerrar_sesion()
+                    break
+                elif opcion == "4":
+                    print("Hasta luego.")
+                    exit()
+                else:
+                    print("Opción no válida.")
+                    
+    def comprar_producto(self):
+        self.inventario.mostrar_productos()
+        idp = input("Ingrese el ID del producto a comprar: ")
+        if idp in self.inventario.productos:
+            Producto = self.inventario.productos[idp]
+            cantidad = int(input(f"Cantidad disponible a comprar ({Producto.cantidad}): "))
+            if cantidad <= Producto.cantidad:
+                Producto.cantidad -= cantidad
+                print(f"Compra exitosa de {cantidad} unidades del producto {Producto.nombre}.")
+            else:
+                print("Compra no valida. (Error de la compra)")
+        else:
+            print("Producto no encontrado.")
+            
+if __name__ == "__main__":
+    sistema = SistemaTienda()
+    sistema.menu_principal()
