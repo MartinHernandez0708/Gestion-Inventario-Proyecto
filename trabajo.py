@@ -1,4 +1,5 @@
 #Proyecto gestion de inventario
+#Github tiene un Codespace / espacio de codigo
 
 class Producto:
     def __init__(self, nombre, cantidad, precio):
