@@ -9,6 +9,7 @@ class Producto:
         self.cantidad = cantidad
         self.precio = precio
 
+    #Mostran el procuto
     def __str__(self):
         return f"ID: {self.id_producto}, Nombre: {self.nombre}, Cantidad: {self.cantidad}, Precio: {self.precio}"
     
