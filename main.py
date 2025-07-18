@@ -31,11 +31,15 @@ while correct_pass == False:
 while True:
   eleccion = mo.eleccion_menu()
   if eleccion == 1:
-    pass
+    usuario_act.agregar_producto(input("ID producto: "), input("Nombre producto: "), input("Cantidad: "), input("Precio: "))
   elif eleccion == 2:
-    pass
+    usuario_act.mostrar_productos()
+    usuario_act.eliminar_producto(input("ID producto a eliminar: "))
   elif eleccion == 3:
-    pass
+    eleccion = int(input("1_ Actualizar cantidad\n2_ Actualizar precio\n3_ Actualizar nombre"))
+    if eleccion == 1:
+      usuario_act.mostrar_productos()
+      usuario_act.actualizar_cantidad(input("ID producto: "))
   elif eleccion == 4:
     pass
   else:
