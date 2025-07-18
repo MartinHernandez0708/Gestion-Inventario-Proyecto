@@ -180,7 +180,7 @@ class SistemaTienda:
             cantidad = int(input(f"Ingrese la cantidad a comprar (disponible: {producto.cantidad}): "))
             if cantidad > 0 and cantidad <= producto.cantidad:
                 producto.cantidad -= cantidad
-                print(f"Compra realizada. Usted compró {cantidad} unidad(es) de {producto.nombre}.")
+                print(f"Compra realizada. Usted compró {cantidad} unidades de {producto.nombre}.")
             else:
                 print("Cantidad no válida.")
         else:
