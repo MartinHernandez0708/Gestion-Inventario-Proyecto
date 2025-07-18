@@ -13,3 +13,12 @@ class Producto:
 class Gestor_Inventario:
     def __init__(self):
         self.productos = {}
+class User:
+    def __init__(self, nombre, contraseña):
+        self.nombre = nombre
+        self.contraseña = contraseña
+        self.inventario = []
+    def __str__(self):
+        return f"Nombre: {self.nombre}\nContraseña: {self.contraseña}\nInventario: {self.inventario}"
+    def agregar_producto(self, nombre_producto, cantidad_producto, precio_producto):
+        pass
