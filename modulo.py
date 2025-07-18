@@ -39,3 +39,7 @@ class User:
         self.inventario = []
     def __str__(self):
         return f"Nombre: {self.nombre}\nContraseña: {self.contraseña}\nInventario: {self.inventario}"
+def eleccion_menu():
+    print("Bienvenido usuario, elija una opción")
+    eleccion = int(input("1_ Agregar producto\n2_ Eliminar producto\n3_ Modificar producto\n4_ Mostrar productos actuales\n5_ Salir"))
+    return eleccion
