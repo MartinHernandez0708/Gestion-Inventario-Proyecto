@@ -1,6 +1,7 @@
 #Proyecto gestion de inventario
 #Github tiene un Codespace / espacio de codigo
 
+#Creando una clase de productos en donde se define cada producto
 class Producto:
     def __init__(self, nombre, cantidad, precio):
         self.nombre = nombre
@@ -13,6 +14,22 @@ class Producto:
 class Gestor_Inventario:
     def __init__(self):
         self.productos = {}
+
+    #Funcion para agregar procutos.
+    def agregar_producto(self, producto):
+        if producto.id_producto in self.productos:
+            print(f"El producto con ID {producto.id_producto} es existente.")
+        else:
+            self.productos[producto.id_producto] = producto
+
+    #Funcion para eliminar poductos
+    def eliminar_producto(self, id_producto):
+        if id_producto in self.productos:
+            del self.productos[id_producto]
+            print(f"Producto con el ID {id_producto} fue eliminado.")
+        else:
+            print(f"Producto con el ID {id_producto} no ha sido encontrado.")
+            
 class User:
     def __init__(self, nombre, contraseña):
         self.nombre = nombre
