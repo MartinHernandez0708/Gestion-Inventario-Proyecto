@@ -31,6 +31,27 @@ class Gestor_Inventario:
             print(f"Producto con el ID {id_producto} fue eliminado.")
         else:
             print(f"Producto con el ID {id_producto} no ha sido encontrado.")
+    #Actualizar la cantidad de un producto
+    def actualizar_cantidad(self, id_producto, nueva_cantidad):
+        if id_producto in self.productos:
+            self.productos[id_producto].cantidad = nueva_cantidad
+            print(f"La cantidad del producto ha sido actualizada a {nueva_cantidad}.")
+        else:
+            print(f"El producto con el ID {id_producto} no ha sido encontrado.")
+
+    #Mostrar todos los productos en el inventario
+    def mostrar_productos(self):
+        if not self.productos:
+            print("No hay productos en el inventario.")
+        else:
+            for producto in self.productos.values():
+                print(producto) 
+    
+    #Cambriar el precio de un producto
+    def actualizar_precio(self, id_producto, nuevo_precio):
+        if id_producto in self.productos:
+            self.productos[id_producto].precio = nuevo_precio
+            print(f"El precio del producto ha sido actualizado a {nuevo_precio}")
             
 class User:
     def __init__(self, nombre, contraseña):
