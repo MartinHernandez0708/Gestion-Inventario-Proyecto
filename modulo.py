@@ -53,30 +53,30 @@ class Gestor_Inventario:
             self.productos[id_producto].precio = nuevo_precio
             print(f"El precio del producto ha sido actualizado a {nuevo_precio}")
             
-class usuario:
+class Usuario:
     def __init__(self, nombre, contraseña, tipo):
         self.nombre = nombre
         self.contraseña = contraseña
-        self.tipo = tipo # 'admin' o 'usuario'
-        
+        self.tipo = tipo  # 'vendedor' o 'cliente'
+
     def __str__(self):
-        return f"Usuario: {self.nombre}, Tipo: {self.tipo}"
+        return f"Nombre: {self.nombre}, Tipo: {self.tipo}"
 
 class SistemaTienda:
     def __init__(self):
         self.usuarios = []
-        self.gestor_inventario = Gestor_Inventario()
-        #2 administradores predefinidos
-        self.usuarios.append(usuario("martin", "martin", "vendedor"))
-        self.usuarios.append(usuario("Jilson", "Jilson", "vendedor"))
+        self.inventario = Gestor_Inventario()
+        # Por defecto, agregar dos vendedores solicitados
+        self.usuarios.append(Usuario("martin", "martin", "vendedor"))
+        self.usuarios.append(Usuario("alexander456lt", "alexander456lt", "vendedor"))
         self.usuario_actual = None
-        
-    def registrar_clientes(self):
-        nombre = input("Ingrese su nombre: ")
+
+    def registrar_cliente(self):
+        nombre = input("Ingrese su nombre de usuario: ")
         contraseña = input("Ingrese su contraseña: ")
-        self.usuarios.append(usuario(nombre, contraseña, "Cliente"))
-        print(f"Cliente {nombre} registrado exitosamente.")
-        
+        self.usuarios.append(Usuario(nombre, contraseña, "cliente"))
+        print("Cuenta de cliente creada exitosamente.")
+
     def iniciar_sesion(self):
         nombre = input("Usuario: ")
         contraseña = input("Contraseña: ")
@@ -87,6 +87,7 @@ class SistemaTienda:
                 return True
         print("Usuario o contraseña incorrectos.")
         return False
+
     def cerrar_sesion(self):
         print(f"Saliendo de la cuenta de {self.usuario_actual.nombre}")
         self.usuario_actual = None
@@ -111,7 +112,7 @@ class SistemaTienda:
                     print("Opción no válida.")
             else:
                 self.menu_usuario()
-                
+
     def menu_usuario(self):
         usuario = self.usuario_actual
         while True:
@@ -170,21 +171,21 @@ class SistemaTienda:
                     exit()
                 else:
                     print("Opción no válida.")
-                    
+
     def comprar_producto(self):
         self.inventario.mostrar_productos()
-        idp = input("Ingrese el ID del producto a comprar: ")
+        idp = input("Ingrese el ID del producto que desea comprar: ")
         if idp in self.inventario.productos:
-            Producto = self.inventario.productos[idp]
-            cantidad = int(input(f"Cantidad disponible a comprar ({Producto.cantidad}): "))
-            if cantidad <= Producto.cantidad:
-                Producto.cantidad -= cantidad
-                print(f"Compra exitosa de {cantidad} unidades del producto {Producto.nombre}.")
+            producto = self.inventario.productos[idp]
+            cantidad = int(input(f"Ingrese la cantidad a comprar (disponible: {producto.cantidad}): "))
+            if cantidad > 0 and cantidad <= producto.cantidad:
+                producto.cantidad -= cantidad
+                print(f"Compra realizada. Usted compró {cantidad} unidad(es) de {producto.nombre}.")
             else:
-                print("Compra no valida. (Error de la compra)")
+                print("Cantidad no válida.")
         else:
             print("Producto no encontrado.")
-            
+
 if __name__ == "__main__":
     sistema = SistemaTienda()
     sistema.menu_principal()
