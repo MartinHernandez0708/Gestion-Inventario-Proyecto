@@ -10,7 +10,7 @@ class Producto:
         self.precio = precio
 
     def __str__(self):
-        return f"Producto: {self.nombre}, Cantidad: {self.cantidad}, Precio: {self.precio}"
+        return f"ID: {self.id_producto}, Nombre: {self.nombre}, Cantidad: {self.cantidad}, Precio: {self.precio}"
     
 class Gestor_Inventario:
     def __init__(self):
