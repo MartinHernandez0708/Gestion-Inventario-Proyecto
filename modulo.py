@@ -67,8 +67,8 @@ class SistemaTienda:
         self.usuarios = []
         self.inventario = Gestor_Inventario()
         # Por defecto, agregar dos vendedores solicitados
-        self.usuarios.append(Usuario("martin", "martin", "vendedor"))
-        self.usuarios.append(Usuario("alexander456lt", "alexander456lt", "vendedor"))
+        self.usuarios.append(Usuario("Martin", "Martin", "vendedor"))
+        self.usuarios.append(Usuario("Jilson", "Jilsont", "vendedor"))
         self.usuario_actual = None
 
     def registrar_cliente(self):
