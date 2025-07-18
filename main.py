@@ -27,7 +27,7 @@ while correct_pass == False:
     correct_pass = True
 
 while True:
-  eleccion = mo.menu()
+  eleccion = mo.eleccion_menu()
   if eleccion == 1:
     pass
   elif eleccion == 2:
