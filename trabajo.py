@@ -40,11 +40,11 @@ class Gestor_Inventario:
             print(f"El producto con el ID {id_producto} no ha sido encontrado.")
     #Actualizar el nombre de un producto
     def actualizar_nombre(self, id_producto, nuevo_nombre):
-    if id_producto in self.productos:
-        self.productos[id_producto].nombre = nuevo_nombre
-        print(f"El nombre del producto ha sido actualizado a {nuevo_nombre}.")
-    else:
-        print(f"El producto con el ID {id_producto} no ha sido encontrado.")
+        if id_producto in self.productos:
+            self.productos[id_producto].nombre = nuevo_nombre
+            print(f"El nombre del producto ha sido actualizado a {nuevo_nombre}.")
+        else:
+            print(f"El producto con el ID {id_producto} no ha sido encontrado.")
 
     #Mostrar todos los productos en el inventario
     def mostrar_productos(self):
