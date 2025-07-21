@@ -7,13 +7,13 @@ class SistemaTienda:
         self.usuarios.append(tr.Usuario("Martin", "Martin", "vendedor"))
         self.usuarios.append(tr.Usuario("Jilson", "Jilson", "vendedor"))
         self.usuario_actual = None
-
+    #registrar un nuevo cliente
     def registrar_cliente(self):
         nombre = input("Ingrese su nombre de usuario: ")
         contraseña = input("Ingrese su contraseña: ")
-        self.usuarios.append(Usuario(nombre, contraseña, "cliente"))
+        self.usuarios.append(tr.Usuario(nombre, contraseña, "cliente"))
         print("Cuenta de cliente creada exitosamente.")
-
+    #Iniciar sesion comprobando usuario y contraseña
     def iniciar_sesion(self):
         nombre = input("Usuario: ")
         contraseña = input("Contraseña: ")
@@ -24,11 +24,11 @@ class SistemaTienda:
                 return True
         print("Usuario o contraseña incorrectos.")
         return False
-
+    #salir de la cuenta actual
     def cerrar_sesion(self):
         print(f"Saliendo de la cuenta de {self.usuario_actual.nombre}")
         self.usuario_actual = None
-
+    #Menu para iniciar sesion o registrar una cuenta
     def menu_principal(self):
         while True:
             if not self.usuario_actual:
@@ -49,7 +49,7 @@ class SistemaTienda:
                     print("Opción no válida.")
             else:
                 self.menu_usuario()
-
+    #Menu del usuario que cambia dependien de si es cliente o vendedor
     def menu_usuario(self):
         usuario = self.usuario_actual
         while True:
@@ -76,7 +76,7 @@ class SistemaTienda:
                     nombre = input("Nombre: ")
                     cantidad = int(input("Cantidad: "))
                     precio = float(input("Precio: "))
-                    producto = Producto(idp, nombre, cantidad, precio)
+                    producto = tr.Producto(idp, nombre, cantidad, precio)
                     self.inventario.agregar_producto(producto)
                 elif opcion == "2":
                     idp = input("ID producto a eliminar: ")
@@ -113,7 +113,7 @@ class SistemaTienda:
                     exit()
                 else:
                     print("Opción no válida.")
-
+    #funcion que disminuye un producto al venderlo
     def comprar_producto(self):
         self.inventario.mostrar_productos()
         idp = input("Ingrese el ID del producto que desea comprar: ")
