@@ -127,3 +127,5 @@ class SistemaTienda:
                 print("Cantidad no válida.")
         else:
             print("Producto no encontrado.")
+sistema = SistemaTienda()
+sistema.menu_principal()
