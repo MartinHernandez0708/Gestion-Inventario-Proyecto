@@ -68,7 +68,3 @@ class Usuario:
 
     def __str__(self):
         return f"Nombre: {self.nombre}, Tipo: {self.tipo}"
-
-if __name__ == "__main__":
-    sistema = SistemaTienda()
-    sistema.menu_principal()
