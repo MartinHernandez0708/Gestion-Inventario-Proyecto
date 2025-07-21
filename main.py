@@ -1,11 +1,9 @@
 import trabajo as tr
 class SistemaTienda:
     def __init__(self):
-        self.usuarios = []
-        self.inventario = tr.Gestor_Inventario()
         # Por defecto, agregar dos vendedores solicitados
-        self.usuarios.append(tr.Usuario("Martin", "Martin", "vendedor"))
-        self.usuarios.append(tr.Usuario("Jilson", "Jilson", "vendedor"))
+        self.usuarios = [tr.Usuario("Martin", "Martin", "vendedor"),tr.Usuario("Jilson", "Jilson", "vendedor")]
+        self.inventario = tr.Gestor_Inventario()
         self.usuario_actual = None
     #registrar un nuevo cliente
     def registrar_cliente(self):
@@ -49,7 +47,16 @@ class SistemaTienda:
                     print("Opción no válida.")
             else:
                 self.menu_usuario()
-    #Menu del usuario que cambia dependien de si es cliente o vendedor
+    def menu_vendedor(self):
+        pass
+    def opcion_1(self):
+        idp = input("ID producto: ")
+        nombre = input("Nombre: ")
+        cantidad = int(input("Cantidad: "))
+        precio = float(input("Precio: "))
+        producto = tr.Producto(idp, nombre, cantidad, precio)
+        self.inventario.agregar_producto(producto)
+    #Menu del usuario que cambia dependiendo de si es cliente o vendedor
     def menu_usuario(self):
         usuario = self.usuario_actual
         while True:
@@ -72,12 +79,7 @@ class SistemaTienda:
 
             if usuario.tipo == "vendedor":
                 if opcion == "1":
-                    idp = input("ID producto: ")
-                    nombre = input("Nombre: ")
-                    cantidad = int(input("Cantidad: "))
-                    precio = float(input("Precio: "))
-                    producto = tr.Producto(idp, nombre, cantidad, precio)
-                    self.inventario.agregar_producto(producto)
+                    self.opcion_1() 
                 elif opcion == "2":
                     idp = input("ID producto a eliminar: ")
                     self.inventario.eliminar_producto(idp)
