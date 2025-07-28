@@ -47,15 +47,6 @@ class SistemaTienda:
                     print("Opción no válida.")
             else:
                 self.menu_usuario()
-    def menu_vendedor(self):
-        pass
-    def opcion_1(self):
-        idp = input("ID producto: ")
-        nombre = input("Nombre: ")
-        cantidad = int(input("Cantidad: "))
-        precio = float(input("Precio: "))
-        producto = tr.Producto(idp, nombre, cantidad, precio)
-        self.inventario.agregar_producto(producto)
     #Menu del usuario que cambia dependiendo de si es cliente o vendedor
     def menu_usuario(self):
         usuario = self.usuario_actual
@@ -79,7 +70,12 @@ class SistemaTienda:
 
             if usuario.tipo == "vendedor":
                 if opcion == "1":
-                    self.opcion_1() 
+                    idp = input("ID producto: ")
+                    nombre = input("Nombre: ")
+                    cantidad = int(input("Cantidad: "))
+                    precio = float(input("Precio: "))
+                    producto = tr.Producto(idp, nombre, cantidad, precio)
+                    self.inventario.agregar_producto(producto)
                 elif opcion == "2":
                     idp = input("ID producto a eliminar: ")
                     self.inventario.eliminar_producto(idp)
