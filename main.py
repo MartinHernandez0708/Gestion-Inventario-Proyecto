@@ -1,9 +1,36 @@
 import trabajo as tr
 class SistemaTienda:
-    def __init__(self):
+    def __init__(self):        
         # Por defecto, agregar dos vendedores solicitados
         self.usuarios = [tr.Usuario("Martin", "Martin", "vendedor"),tr.Usuario("Jilson", "Jilson", "vendedor")]
+        users_text = open("users_text.txt", "w")
+        users_text.close()
+    
+        users_text = open("users_text.txt", "r")
+    
+        for user_t in users_text.read().split(","):
+            if user_t != " ":
+                self.usuarios.append(user_t)
+        
         self.inventario = tr.Gestor_Inventario()
+        products_key_text = open("products_text.txt", "w")
+        products_key_text.close()
+    
+        products_key_text = open("products_text.txt", "r")
+    
+        for product_t in products_key_text.read().split(","):
+            if product_t != " ":
+                self.inventario.productos[producto_t] = 0
+        
+        products_value_text = open("products_text.txt", "w")
+        products_value_text.close()
+    
+        products_value_text = open("products_text.txt", "r")
+
+        for value_t in products_value_text.read().split(","):
+            if value_t != " ":
+                self.inventario
+        
         self.usuario_actual = None
     #registrar un nuevo cliente
     def registrar_cliente(self):
@@ -12,6 +39,7 @@ class SistemaTienda:
         self.usuarios.append(tr.Usuario(nombre, contraseña, "cliente"))
         print("Cuenta de cliente creada exitosamente.")
     #Iniciar sesion comprobando usuario y contraseña
+    
     def iniciar_sesion(self):
         nombre = input("Usuario: ")
         contraseña = input("Contraseña: ")
@@ -23,6 +51,7 @@ class SistemaTienda:
         print("Usuario o contraseña incorrectos.")
         return False
     #salir de la cuenta actual
+    
     def cerrar_sesion(self):
         print(f"Saliendo de la cuenta de {self.usuario_actual.nombre}")
         self.usuario_actual = None
