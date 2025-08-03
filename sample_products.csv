@@ -1,0 +1,8 @@
+id,nombre,cantidad,precio,categoria
+001,Laptop,10,1500.0,Tecnologia
+002,Mouse,50,25.0,Tecnologia
+003,Teclado,30,45.0,Tecnologia
+004,Silla,20,80.0,Hogar
+005,Mesa,15,120.0,Hogar
+006,Arroz,100,2.5,Alimentos
+007,Frijoles,80,3.0,Alimentos
